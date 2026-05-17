@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 def home(request):
     return JsonResponse({
-        "name": "Academic Assistant API 🧠",
+        "name": "Academic Assistant API ",
         "version": "1.0.0",
         "description": "Alternative au RAG classique via un graphe topologique ATF",
         "author": "Djafarou Abdou",
