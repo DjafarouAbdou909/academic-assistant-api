@@ -1,29 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.http import JsonResponse
-
-def home(request):
-    return JsonResponse({
-        "name": "Academic Assistant API",
-        "version": "1.0.0",
-        "description": "Alternative au RAG classique via un graphe topologique ATF",
-        "author": "Djafarou Abdou",
-        "endpoints": {
-            "health": "/api/health/",
-            "build":  "/api/build/",
-            "query":  "/api/query/",
-            "graph":  "/api/graph/"
-        },
-        "demo": {
-            "question": "Je narrive pas a me connecter, quel est le processus pour mon remboursement ?",
-            "url": "/api/query/"
-        },
-        "deployed_on": "Render",
-        "github": "https://github.com/DjafarouAbdou909/academic-assistant-api"
-    }, json_dumps_params={"ensure_ascii": False, "indent": 2})
+from django.urls import path
+from .views import BuildView, QueryView, GraphView, HealthView
 
 urlpatterns = [
-    path("", home),
-    path("admin/", admin.site.urls),
-    path("api/", include("memory_api.urls")),
+    path("build/", BuildView.as_view(), name="build"),
+    path("query/", QueryView.as_view(), name="query"),
+    path("graph/", GraphView.as_view(), name="graph"),
+    path("health/", HealthView.as_view(), name="health"),
 ]
